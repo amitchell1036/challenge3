@@ -1,15 +1,34 @@
 // Assignment code here
 var generateBtn = document.querySelector("#generate");
-function generatePassword(){
+function generatePassword(passwordLength){
   console.log("Hey you click the button!")
   // Prompt the user for the password criteria
   // a. Password Length 8 < 128
-  result = window.prompt("How many characters would you like you password to contain?");
+  confirm("Your password must contain at least 8 characters?");
   // b. Lowercase, Uppercase, numeric and/or special characters
-  result = window.prompt = ("Would you like to include lowercase, Uppercase, numeric and/or special characters");
-  // Validate the input
-  // Generate the password based on criteria
-  // Display password to the page
+  confirm("Your password must include lowercase, uppercase, numeric and/or special characters?");
+  // Validate the input 
+  var numberChars = "0123456789";
+  var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+  var allChars = numberChars + upperChars + lowerChars;
+  var randPasswordArray = Array(passwordLength);
+  randPasswordArray[1] = numberChars;
+  randPasswordArray[3] = upperChars;
+  randPasswordArray[1] = lowerChars;
+  randPasswordArray = randPasswordArray.fill(allChars, 8);
+  return shuffleArray(randPasswordArray.map(function(x) { return x[Math.floor(Math.random() * x.length)] })).join('');
+}
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
  return "Generated password will go here!"
 }
 // Write password to the #password input
